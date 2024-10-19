@@ -1,6 +1,6 @@
-# FTS-Travo
+# Flight-Ticket-System
 
-FTS-Travo is an online flight ticket booking system designed to simplify the process of searching and purchasing airline tickets. The platform provides a user-friendly interface for easy navigation and quick access to flight options.
+Flight-Ticket-System is an online flight ticket booking system designed to simplify the process of searching and purchasing airline tickets. The platform provides a user-friendly interface for easy navigation and quick access to flight options.
 
 ## Features
 - Search for flights by destination and date
