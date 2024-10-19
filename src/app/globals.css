@@ -1,0 +1,591 @@
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@100;200;300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --border-radius: var(--mui-shape-borderRadius);
+  --border-color: var(--mui-palette-divider);
+  --primary-color: var(--mui-palette-primary-main);
+  --background-color: white;
+  --background-color-rgb: var(--mui-palette-background-paperChannel);
+  --header-height: 64px;
+  --header-z-index: var(--mui-zIndex-appBar);
+  --footer-z-index: 10;
+  --customizer-z-index: var(--mui-zIndex-drawer);
+  --search-z-index: var(--mui-zIndex-tooltip);
+  --drawer-z-index: var(--mui-zIndex-drawer);
+  --backdrop-color: rgb(var(--mui-mainColorChannels-light) / 0.5);
+}
+
+* {
+  font-family: "Sarabun", sans-serif;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: theme("borderColor.DEFAULT", currentColor);
+}
+[data-mui-color-scheme="dark"] {
+  --backdrop-color: rgb(16 17 33 / 0.6);
+}
+button {
+  @apply cursor-pointer;
+}
+html {
+  display: flex;
+  inline-size: 100%;
+  min-block-size: 100%;
+  background-color: white;
+  -webkit-transition: width 2s ease-in-out;
+  -moz-transition: width 1s ease-in-out;
+  -o-transition: width 1s ease-in-out;
+  transition: width 3s ease-in-out;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul:not([class]) {
+  margin-block: 1rem;
+  padding-inline-start: 40px;
+}
+
+.transition-width {
+  transition: width 1s ease-in-out;
+}
+
+/*! Do note remove following style */
+/*
+  Fix the popout / submenu closing issue when using hover trigger to open the menu and using
+  perfectscrollbar where the bridge create with safe polygon by floating ui was not working
+*/
+[data-floating-ui-safe-polygon] .scrollbar-container {
+  pointer-events: auto;
+}
+[data-floating-ui-safe-polygon] .scrollbar-container .ps__rail-y {
+  pointer-events: none;
+}
+
+.ps__rail-y {
+  inset-inline-end: 0 !important;
+  inset-inline-start: auto !important;
+  & .ps__thumb-y {
+    inset-inline-end: 3px !important;
+    inset-inline-start: auto !important;
+    background-color: var(--mui-palette-divider);
+    inline-size: 6px;
+    &:hover,
+    &:focus,
+    &.ps--clicking {
+      background-color: var(--mui-palette-action-disabled) !important;
+    }
+  }
+  &:hover,
+  &:focus,
+  &.ps--clicking {
+    background-color: var(--mui-palette-action-hover) !important;
+  }
+  &:hover,
+  &:focus,
+  &.ps--clicking {
+    .ps__thumb-y {
+      background-color: var(--mui-palette-action-disabled) !important;
+    }
+  }
+}
+
+.ts-vertical-nav-root {
+  .ps__thumb-y {
+    inline-size: 4px;
+    &:hover,
+    &:focus,
+    &.ps--clicking {
+      inline-size: 6px;
+    }
+  }
+  .ps__rail-y {
+    inline-size: 10px;
+    &:hover,
+    &:focus,
+    &.ps--clicking {
+      background-color: transparent !important;
+      .ps__thumb-y {
+        inline-size: 6px;
+      }
+    }
+  }
+}
+
+:where([class^="ri-"]) {
+  font-size: 1.5rem;
+}
+
+/* ========================================================== custom class style */
+
+.main-container {
+  @apply max-w-[1260px] w-full mx-auto px-5 lg:px-0;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+.second-container {
+  @apply max-w-[1148px] w-full mx-auto px-5 lg:px-0;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+/* Apply the animations conditionally */
+.nav-transition {
+  transition:
+    visibility 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+p {
+  @apply text-[16px] font-[500];
+}
+.nav-fixed {
+  animation: slideIn 0.3s forwards;
+}
+
+.booking-input {
+  @apply text-[12px]  py-[12px] outline-none  px-[18px] rounded-[4px];
+  border: 1.107px solid #9d9d9d;
+}
+.nav-not-fixed {
+  animation: slideOut 0.3s forwards;
+}
+.primary-bg {
+  @apply bg-[#254fd4];
+}
+
+.secondary-input {
+  @apply px-4 py-2 rounded-md outline-none border border-gray-400 focus:ring focus:ring-blue-200;
+}
+.secondary-btn {
+  @apply text-[20px] font-semibold text-[#254fd4] gap-2 cursor-pointer rounded-lg bg-[#D5DFFF] px-6 py-3 w-full whitespace-nowrap flex items-center justify-center;
+}
+
+.primary-text {
+  @apply text-[#254fd4];
+}
+
+.light-bg {
+  @apply bg-[#d3d3d3];
+}
+.primary-btn {
+  @apply px-6 py-2.5 rounded-md shadow-md cursor-pointer text-[20px] font-[500] w-full bg-[#254FD4] hover:bg-[#254ed4cc] text-white flex items-center justify-center gap-2 transition-all duration-300;
+}
+
+.primary-input {
+  @apply px-5 py-2 w-full border hover:border ring-2 ring-gray-400 rounded-lg mt-1 text-lg outline-none border-indigo-100 focus:ring-2 focus:ring-blue-400;
+}
+.dark-b-text {
+  @apply text-[#162F7F];
+}
+.edit-btn {
+  @apply px-6 py-2 rounded-lg  cursor-pointer text-sm w-full font-[500] bg-[#DCFCE7] flex items-center justify-center gap-2 transition-all duration-300;
+}
+
+.remove-btn {
+  @apply px-6 py-2 rounded-lg  cursor-pointer text-sm w-full font-[500] bg-[#D2252B] flex items-center text-white justify-center gap-2 transition-all duration-300;
+}
+
+.primary-shadow {
+  box-shadow: 0px 2.951px 14.092px 0.738px rgba(20, 60, 119, 0.11);
+}
+
+.secondary-shadow {
+  box-shadow:
+    2px -1px 6px rgba(0, 0, 0, 0.062),
+    /* Top-right shadow */ 0px 1px 3px rgba(0, 0, 0, 0.068); /* Bottom shadow */
+  border-radius: 8px; /* Smooth rounded corners */
+}
+.badge-btn {
+  @apply py-[5px] cursor-pointer px-[30px] border border-blue-600 transition-all duration-300  rounded-[6px] bg-white  text-[16px] w-full flex items-center justify-center whitespace-nowrap;
+}
+table {
+  border-spacing: 0;
+}
+
+.swiper,
+.swiper-container,
+.swiper-wrapper {
+  z-index: 0 !important;
+}
+
+/* date picker  */
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none;
+  border-color: #005bff;
+}
+
+.react-datepicker {
+  border: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker__header {
+  background-color: #005bff;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 10px 0;
+}
+
+.react-datepicker__current-month {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: #333;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background-color: #005bff;
+  color: white;
+}
+
+.react-datepicker__day--in-selecting-range:not(
+    .react-datepicker__day--in-range
+  ) {
+  background-color: #b2d4ff;
+}
+
+.react-datepicker__day:hover {
+  background-color: #b2d4ff;
+}
+
+/* Customise flatpickr */
+
+.flatpickr-months,
+.flatpickr-weekdays {
+  @apply bg-blue-700 text-white;
+}
+
+.flatpickr-months {
+  @apply rounded-t;
+}
+
+span.flatpickr-weekday {
+  @apply text-white font-medium;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months:hover {
+  @apply bg-transparent;
+}
+
+.flatpickr-am-pm:focus,
+.flatpickr-am-pm:hover,
+.numInput:focus,
+.numInput:hover,
+.numInputWrapper:focus,
+.numInputWrapper:hover {
+  @apply bg-transparent;
+}
+
+.flatpickr-weekdays {
+  height: 36px !important;
+  @apply border-b border-gray-100 dark:border-gray-600;
+}
+
+.flatpickr-day {
+  @apply text-gray-800 dark:text-gray-400;
+}
+
+.flatpickr-day:focus,
+.flatpickr-day:hover {
+  @apply bg-gray-100;
+}
+
+.flatpickr-day.today {
+  background-color: rgba(81, 86, 190, 0.1);
+  @apply border-blue-500;
+}
+
+.flatpickr-day.today:focus,
+.flatpickr-day.today:hover {
+  @apply text-gray-900;
+  background-color: rgba(81, 86, 190, 0.15) !important;
+}
+
+.flatpickr-day.selected {
+  color: #fff !important;
+  @apply border-blue-500 bg-blue-500;
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover,
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.notAllowed,
+.flatpickr-day.notAllowed.nextMonthDay,
+.flatpickr-day.notAllowed.prevMonthDay,
+.flatpickr-day.prevMonthDay {
+  color: #ced4da !important;
+}
+
+.flatpickr-day.inRange,
+.flatpickr-day.nextMonthDay.inRange,
+.flatpickr-day.nextMonthDay.today.inRange,
+.flatpickr-day.nextMonthDay:focus,
+.flatpickr-day.nextMonthDay:hover,
+.flatpickr-day.prevMonthDay.inRange,
+.flatpickr-day.prevMonthDay.today.inRange,
+.flatpickr-day.prevMonthDay:focus,
+.flatpickr-day.prevMonthDay:hover,
+.flatpickr-day.today.inRange,
+.flatpickr-day:focus,
+.flatpickr-day:hover {
+  @apply bg-gray-100 border-gray-200 dark:bg-gray-600 dark:border-gray-700;
+}
+
+.flatpickr-day.inRange {
+  @apply shadow-none;
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-months .flatpickr-next-month,
+.flatpickr-months .flatpickr-prev-month {
+  color: rgba(255, 255, 255, 0.9) !important;
+  fill: rgba(255, 255, 255, 0.9) !important;
+}
+
+.flatpickr-monthDropdown-month {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.flatpickr-current-month input.cur-year[disabled],
+.flatpickr-current-month input.cur-year[disabled]:hover {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.flatpickr-time .flatpickr-am-pm,
+.flatpickr-time .flatpickr-time-separator,
+.flatpickr-time input {
+  @apply border border-t-0 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300;
+}
+
+.flatpickr-time input {
+  @apply bg-white;
+}
+
+.flatpickr-am-pm:hover {
+  @apply bg-white;
+}
+
+.flatpickr-time,
+.flatpickr-calendar {
+  @apply bg-white shadow-sm;
+}
+
+.flatpickr-calendar.hasTime .flatpickr-time {
+  @apply border border-t-0 border-gray-200 dark:border-gray-700 rounded-b-md;
+}
+
+.flatpickr-months .flatpickr-next-month:hover svg,
+.flatpickr-months .flatpickr-prev-month:hover svg {
+  fill: rgba(255, 255, 255, 0.9) !important;
+}
+
+.flatpickr-days .dayContainer {
+  @apply bg-white dark:bg-gray-800 relative border border-gray-200 dark:border-gray-700;
+}
+
+.mySwiper {
+  position: relative;
+  z-index: 1 !important;
+}
+
+.swiper-slide {
+  z-index: 1 !important;
+}
+
+.popper-content {
+  z-index: 9999 !important;
+  position: absolute;
+}
+
+input::placeholder {
+  color: #808285;
+  font-size: 16px;
+  opacity: 1;
+}
+.custom-gradient {
+  background: linear-gradient(91deg, #254fd4 2.52%, #13296e 146.96%);
+  border-radius: 9.599px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+select {
+  border-right: 16px solid transparent;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+select {
+  z-index: 10;
+  position: relative;
+  background: transparent;
+}
+
+.select-wrapper::after {
+  z-index: 0;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.mui-18pr2b1-MuiFormControlLabel-root .MuiFormControlLabel-label,
+.mui-18pr2b1-MuiFormControlLabel-root .MuiFormControlLabel-label.Mui-disabled {
+  color: white !important;
+}
+
+/* Set z-index to 0 for Swiper container */
+.swiper-container {
+  z-index: 0 !important;
+}
+
+/* Set z-index to 0 for Swiper wrapper */
+.swiper-wrapper {
+  z-index: 0 !important;
+}
+
+/* Set z-index to 0 for Swiper slides */
+.swiper-slide {
+  z-index: 0 !important;
+}
+
+.primary-radius {
+  @apply rounded-[11px];
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  background: #d1ddeb;
+  width: 57px;
+  height: 7px;
+  border-radius: 8px;
+  margin: 0 5px !important;
+  opacity: 1;
+}
+.swiper-slide {
+  margin-bottom: 37px;
+}
+
+.flight-rec .swiper-slide {
+  margin-bottom: 70px;
+}
+
+.swiper-slide img {
+  display: block;
+  margin: 10px 0px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.flight-rec .swiper-slide img {
+  display: block;
+  margin-bottom: 45px 0px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background: linear-gradient(91deg, #254fd4 2.52%, #13296e 146.96%);
+  border-radius: 9.599px;
+}
+.custom-calendar .rmdp-range {
+  background-color: #e2e8fd; /* blue-100 */
+  color: #000000; /* black */
+  border: none;
+  box-shadow: none;
+}
+
+.custom-calendar {
+  @apply z-[90000];
+}
+
+.custom-calendar .rmdp-day-picker .rmdp-day.rmdp-today span {
+  background-color: #4f7aff;
+  color: #ffffff; /* white */
+  border-radius: 50%;
+}
+
+/* .custom-calendar .rmdp-header .rmdp-header-values {
+  @apply text-white bg-[#4f7aff] w-full py-3 rounded-lg mx-3;
+}
+
+.custom-calendar .rmdp-header button {
+  @apply p-3 hover:bg-transparent focus:bg-transparent focus:text-black hover:text-black flex items-center justify-center place-items-center;
+} */
+
+.rmdp-calendar {
+  @apply !z-[9000];
+}
